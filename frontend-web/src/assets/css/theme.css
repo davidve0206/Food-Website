@@ -1,0 +1,62 @@
+:root {
+  --font-family-general: 'Ubuntu', sans-serif;
+  --font-family-emphasis: 'Pacifico', cursive;
+
+  --theme-color-light-orange: #fdeedc;
+  --theme-color-mid-orange: #ffd8a9;
+  --theme-color-pale-orange: #f1a661;
+  --theme-color-dark-orange: #fd8d14;
+  --theme-color-dark-red: #c51605;
+
+  font-size: calc(14px + 6 * ((100vw - 320px) / 680));
+}
+
+/* General adjustments */
+
+body {
+  font-family: var(--font-family-general);
+  background-color: #ffffff;
+  margin: 0;}
+
+a {
+  align-items: center;
+  margin: 0.1rem;
+  text-decoration: none;
+  max-width: fit-content;
+  max-height: min-content;
+  display: contents;
+}
+
+/* Common components */
+
+.CoreContainer {
+  text-align: center;
+  vertical-align: middle;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0  2vw;
+}
+
+button {
+  font-family: var(--font-family-general);
+  font-size: 1rem;
+  min-height: 2rem;
+  max-height: 2rem;
+  width: fit-content;
+  max-width: 6rem;
+  padding: 0.25em 0.75em;
+  margin: 0.25rem;
+  background-color: var(--theme-color-dark-orange);
+  color: var(--theme-color-light-orange);
+  border-radius: 15px;
+  border-color: white;
+  border-style: none;
+  cursor: pointer;
+  align-self: center;
+}
+
+button:hover {
+  background-color: var(--theme-color-pale-orange);
+}

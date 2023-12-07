@@ -1,0 +1,11 @@
+.SiteLogo {
+  font-family: 'Pacifico', cursive;
+  color: var(--theme-color-dark-red);
+  font-size: 2rem;
+  margin: 0%;
+  width: fit-content;
+}
+
+.SiteLogo > svg {
+  color: var(--theme-color-dark-orange);
+}

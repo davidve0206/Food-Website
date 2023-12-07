@@ -5,12 +5,17 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import Home from './pages/Home/index'
-import './assets/css/index.css'
+import Auth from './pages/Auth/index'
+import './assets/css/theme.css'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/auth/:type?",
+    element: <Auth />,
   },
 ]);
 
