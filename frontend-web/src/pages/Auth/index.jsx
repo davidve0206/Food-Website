@@ -1,4 +1,7 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import * as ACTION_TYPES from "../../utils/action_types"
+import CreateUserForm from "./CreateUserForm";
+import LogInForm from "./LogInForm"
 import SiteHeader from "../../components/SiteHeader";
 
 export default function Auth() {
@@ -8,7 +11,8 @@ export default function Auth() {
   return (
     <>
       <SiteHeader inclLogIn={false} />
-      <p>Auth Form Component</p>   
+      {type == ACTION_TYPES.SINGIN ? <CreateUserForm /> : <LogInForm />}
+
     </>
   )
 

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import SiteHeader from "../../components/SiteHeader";
 import Reviews from './Reviews';
+import * as ACTION_TYPES from "../../utils/action_types"
 import "../../assets/css/Home.css"
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
       <div className='CoreContainer'>
         <div className='Welcome'>
           <h1>Can't agree on what to eat tonight?</h1>
-          <Link to="/auth/signin">
+          <Link to={`/auth/${ACTION_TYPES.SINGIN}`}>
             <button>Sign In</button>
           </Link>
         </div>

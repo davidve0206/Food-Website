@@ -1,0 +1,30 @@
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+input {
+  display: block;
+  min-width: 250px;
+  max-width: 350px;
+  font-family: var(--font-family-general);
+  margin-bottom: 0.5rem;
+}
+
+.UserForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 75vw;
+  align-self: center;
+  align-content: center;
+  align-items: center;
+}
+
+.UserForm > h1 {
+  color: var(--theme-color-dark-red);
+  margin-bottom: 0rem;
+}
+
+.UserForm > h2 {
+  margin: 1rem;
+}
