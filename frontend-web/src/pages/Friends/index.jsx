@@ -9,7 +9,7 @@ export default function Friends() {
 
   return (
     <>
-      <SiteHeader />
+      <SiteHeader inclLogIn={false} inclLogOut={true} />
       <div className='CoreContainer'>
         <p>{context.authState}</p>
         <p>{context.usernameState}</p>

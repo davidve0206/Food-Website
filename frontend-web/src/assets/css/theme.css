@@ -60,3 +60,11 @@ button {
 button:hover {
   background-color: var(--theme-color-pale-orange);
 }
+
+.redButton {
+  background-color: darkred;
+}
+
+.redButton:hover {
+  background-color: var(--theme-color-dark-red);
+}

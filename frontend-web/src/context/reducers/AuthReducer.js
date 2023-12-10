@@ -36,7 +36,7 @@ export function AuthReducer(state = initialState, action) {
         token: "",
       }
 
-      localStorage.removeItem("authSate")
+      localStorage.removeItem("authState")
 
       return state;
       
