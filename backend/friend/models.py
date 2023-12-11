@@ -1,14 +1,12 @@
 from django.db import models
 from django.conf import settings
-
-
-# Create your models here.
+from django.dispatch import receiver
 
 # List of friends
 class FriendList(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="user")
-    friends = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="friends")
+    friends = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="friend_list")
 
     class Meta:
         verbose_name = "FriendList"
@@ -53,12 +51,12 @@ class FriendRequest(models.Model):
     """
     sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="sender")
     receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="receiver")
-    is_active = models.BooleanField(blank=True, null=False, default=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = "FriendRequest"
         verbose_name_plural = "FriendRequests"
+        unique_together = ["sender", "receiver"]
 
     def __str__(self):
         return self.sender.username
@@ -66,30 +64,23 @@ class FriendRequest(models.Model):
     def accept(self):
         """
         Accept friend request
-        Update sender's and receiver's friend list
+        Update sender's and receiver's friend list, then deletes the request
         """
+        
         receiver_friend_list = FriendList.objects.get(user=self.receiver)
         sender_friend_list = FriendList.objects.get(user=self.sender)
-
-        if receiver_friend_list & sender_friend_list:
-            receiver_friend_list.add_friend(self.sender)
-            sender_friend_list.add_friend(self.receiver)
-            self.is_active = False
-            self.save()
+        receiver_friend_list.add_friend(self.sender)
+        sender_friend_list.add_friend(self.receiver)
+        self.delete()
 
     def decline(self):
         """
         Decline a friend request
-        It is declined if the "is_active" field is set to False by the receiver
+        If the receiver declines the request, the request is deleted
         """
-        self.is_active(False)
-        self.save()
+        self.delete()
 
-    def cancel(self):
-        """
-        Cancel a friend request
-        It is canceled if the "is_active" field is set to False by the sender
-        """
-        self.is_active(False)
-        self.save()
-
+@receiver(models.signals.post_save, sender=settings.AUTH_USER_MODEL)
+def friendlist_create(sender, instance=None, created=False, **kwargs):
+    if created:
+        FriendList.objects.create(user=instance)
