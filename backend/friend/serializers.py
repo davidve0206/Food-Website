@@ -29,14 +29,3 @@ class FriendRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = FriendRequest
         exclude = ["timestamp"]
-
-class FriendListSerializer(serializers.ModelSerializer):
-    """
-    A user should be able to access a list of the usernames of all his friends
-    """
-    friends = serializers.SlugRelatedField(slug_field="username",
-                                          queryset=get_user_model().objects.all())
-
-    class Meta:
-        model = FriendList
-        fields = ["friends"]
