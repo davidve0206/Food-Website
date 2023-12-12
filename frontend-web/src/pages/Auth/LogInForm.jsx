@@ -1,9 +1,10 @@
 import { useContext } from "react"
 import { AuthContext } from "../../context/hooks/AuthContext"
 import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import API from "../../utils/api-service"
 import "../../assets/css/Forms.css"
+import * as ACTION_TYPES from "../../utils/action_types"
 
 export default function CreateUserForm() {
   
@@ -45,6 +46,7 @@ export default function CreateUserForm() {
         {errors?.password?.type === "required" && <span className="FormAlert" role="alert">{errors.password.message}</span>}
 
         <button>Log In</button>
+        <Link to={`/auth/${ACTION_TYPES.SINGIN}`} className="FormAlert">Don't have an account? Sing-in here!</Link>
       </form>
     </div>
     

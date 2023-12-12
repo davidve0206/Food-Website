@@ -16,11 +16,11 @@ export default function CreateUserForm() {
   function onSubmit(data) {
     API.registerUser(data)
     .then(resp => {
-      if (resp.username) {
+      if (resp.id) {
         alert(`User ${resp.username} created, please log in`)
         navigate("/auth")
       } else {
-      alert("Something went wrong")
+        resp.username ? alert(`${resp.username}`) : alert("Something went wrong")
       }
     })
   }
