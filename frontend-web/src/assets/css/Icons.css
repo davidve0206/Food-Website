@@ -1,0 +1,16 @@
+svg {
+  cursor: pointer;
+  margin: auto 0.1rem;
+}
+
+.fa-square-check {
+  color: darkgreen;
+}
+
+.fa-rectangle-xmark {
+  color: darkred;
+}
+
+li > .fa-rectangle-xmark {
+  margin-left: auto;
+}

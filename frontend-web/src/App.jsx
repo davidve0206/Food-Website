@@ -12,23 +12,27 @@ import * as ACTIONS from "./context/actions/auth_actions"
 import * as AuthReducer from "./context/reducers/AuthReducer"
 
 /* Imports for the pages */
-import Home from './pages/Home'
-import Auth from './pages/Auth'
-import Friends from "./pages/Friends"
+import Home from "./pages/Home"
+import Auth from "./pages/Auth"
+import LoggedInView from "./pages/LoggedInView"
+import ErrorPage from "./pages/ErrorPage"
 
 /* Set routes within the app */
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    errorElement: <ErrorPage />
   },
   {
     path: "/auth/:type?",
     element: <Auth />,
+    errorElement: <ErrorPage />
   },
   {
-    path: "/friends",
-    element: <Friends />,
+    path: "/loggedin",
+    element: <LoggedInView />,
+    errorElement: <ErrorPage />
   },
 ]);
 

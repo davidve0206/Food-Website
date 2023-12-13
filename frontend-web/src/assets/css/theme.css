@@ -30,6 +30,7 @@ a {
 /* Common components */
 
 .CoreContainer {
+  flex: 4 65vw;
   text-align: center;
   vertical-align: middle;
   height: 85vh;
@@ -37,6 +38,11 @@ a {
   flex-direction: column;
   justify-content: space-between;
   padding: 0  2vw;
+}
+
+.SideBar {
+  flex: 1 250px;
+  background-color: #f6f6f6;
 }
 
 button {
@@ -67,4 +73,39 @@ button:hover {
 
 .redButton:hover {
   background-color: var(--theme-color-dark-red);
+}
+
+.CollapsibleHead {
+  font-family: var(--font-family-emphasis);
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--theme-color-mid-orange);
+  color: var(--theme-color-dark-orange);
+  border-bottom: solid white;
+  cursor: pointer;
+}
+
+.CollapsibleList {
+  padding: 0.25rem 0rem;
+  margin: 0;
+  font-size: 1rem;
+  padding: 0rem 1rem;
+  background-color: var(--theme-color-light-orange);
+  border-bottom: solid white;
+}
+
+.CollapsibleList > li {
+  margin: 0.35rem 0rem;
+  list-style: none;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.CollapsibleList > .ClickableListItem {
+  cursor: pointer;
+}
+
+.CollapsibleList > .Selected {
+  color: var(--theme-color-dark-red);
+  font-weight: bold;
 }

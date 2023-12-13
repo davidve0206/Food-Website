@@ -1,20 +1,54 @@
-import { useContext } from "react"
+/* React imports */
+import { useContext, useEffect, useState } from "react"
+/* Context imports */
 import { AuthContext } from "../../context/hooks/AuthContext"
-import SiteHeader from "../../components/SiteHeader";
+/* Component imports */
+import FriendList from "./FriendList";
+import FriendRequestList from "./FriendRequestList";
+import SearchUsers from "./SearchUsers";
+/* Utilities imports */
+import PropTypes from 'prop-types';
+import API from "../../utils/api-service"
+import { get_ids_and_usernames } from "../../utils/functions"
 
-export default function Friends() {
+export default function LoggedInView({setSelectedFriend}) {
   
+  LoggedInView.propTypes = {
+    setSelectedFriend: PropTypes.func.isRequired,
+  }
+
   const context = useContext(AuthContext)
-  const local = JSON.parse(localStorage.getItem("authState"))
+  const [friendList, setFriendList] = useState([])
+  const [friendRequests, setFriendRequests] = useState([])
+
+  /* when the component is rendered, get user's lists of friends and requests */
+  useEffect(() => {
+    getFriends()
+  }, [])
+
+  function getFriends() {
+    API.fetchFriendList(context.tokenState)
+    .then( resp => setFriendList(get_ids_and_usernames(resp, "username")) )
+    .then(setSelectedFriend(null))
+    API.fetchFriendRequests(context.tokenState)
+    .then( resp => setFriendRequests(get_ids_and_usernames(resp, "sender")) )
+  }
 
   return (
     <>
-      <SiteHeader inclLogIn={false} inclLogOut={true} />
-      <div className='CoreContainer'>
-        <p>{context.authState}</p>
-        <p>{context.usernameState}</p>
-        <p>{context.tokenState}</p>
-        <p>local {local.username}</p>
+      <div className='SideBar'>
+        <SearchUsers 
+          friendList={friendList}
+        />
+        <FriendList
+          friendList={friendList}
+          setSelectedFriend={setSelectedFriend}
+          getFriends={getFriends}
+        />
+        <FriendRequestList
+          friendRequestList={friendRequests}
+          getFriends={getFriends}
+        />
       </div>
     </>
   );

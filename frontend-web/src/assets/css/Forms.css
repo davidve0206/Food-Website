@@ -40,3 +40,39 @@ input {
   color: grey;
   font-style: italic;
 }
+
+/* Styling for the searchbar and results */
+
+.UserSearchBar {
+  width: auto;
+  min-height: 1.5rem;
+  margin: 0.25rem auto;
+  padding: 0 0.25rem;
+  border-color: var(--theme-color-dark-red);
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.UserSearchBar:focus {
+  outline: none;
+}
+
+.SearchResultList {
+  padding: 0.25rem 0rem;
+  margin: 0;
+  font-size: 0.75rem;
+  padding: 0rem;
+  background-color: transparent;
+  border-bottom: solid white;
+}
+
+.SearchResultList > li {
+  padding: 0.25rem 0.75rem;
+  text-align: center;
+  list-style: none;
+  cursor: pointer;
+}
+
+.SearchResultList > li:hover {
+  background-color: var(--theme-color-light-orange);
+}

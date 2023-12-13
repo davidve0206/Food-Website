@@ -23,7 +23,7 @@ export default function CreateUserForm() {
     .then(resp => {
       if (resp.token) {
         context.handleUserLogin({username: data.username, token: resp.token})
-        navigate("/friends")
+        navigate("/loggedin")
       } else {
       alert("Something went wrong")
       }

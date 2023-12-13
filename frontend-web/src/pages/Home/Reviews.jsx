@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const reviews_dummy = [
   {
     user: "Antonio Banderas",
@@ -13,8 +15,12 @@ const reviews_dummy = [
   },
 ];
 
-export default function Revies({reviews = reviews_dummy}) {
+export default function Reviews({reviews = reviews_dummy}) {
   let reviewDivs = []
+  
+  Reviews.propTypes = {
+    reviews: PropTypes.array,
+  }
 
   /* present maximum three reviews, each in its own div */
   for (let i = 0; i < Math.min(3, reviews.length); i++) {
