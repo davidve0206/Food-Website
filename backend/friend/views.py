@@ -3,7 +3,7 @@ from friend.models import FriendRequest, FriendList
 from rest_framework import viewsets, permissions, authentication, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from .serializers import UserSerializer, FriendRequestSerializer, FriendListSerializer
+from .serializers import UserSerializer, FriendRequestSerializer
 
 # Create your views here.
 class CreateUserViewSet(viewsets.ModelViewSet):
@@ -47,7 +47,7 @@ class FriendRequestViewSet(viewsets.ModelViewSet):
         try:
           # Sender and receiver are set in the body of the request by the frontent
           sender = get_user_model().objects.get(username=request.data["sender"])
-          receiver = get_user_model().objects.get(username=request.data["receiver"])
+          receiver = self.request.user
           
           match request.data["action"]:
               case "accept":
