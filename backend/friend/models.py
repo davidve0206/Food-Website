@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.dispatch import receiver
+from foodoptions.models import CurrentFoodChoice
 
 # List of friends
 class FriendList(models.Model):
@@ -31,9 +32,15 @@ class FriendList(models.Model):
         # Access the remover's friend list and remove the target
         remover_friends_list = self
         remover_friends_list.remove_friend(to_unfriend)
+        # Access the remover's list of choices with the friend and delete all
+        remover_choices = CurrentFoodChoice.objects.filter(chooser=self.user, friend=to_unfriend)
+        remover_choices.delete()
         # Access the target's friend list and remove the remover
         removee_friends_list = FriendList.objects.get(user=to_unfriend)
         removee_friends_list.remove_friend(self.user)
+        # Access the target's list of choices with the remover and delete all
+        removee_choices = CurrentFoodChoice.objects.filter(chooser=to_unfriend, friend=self.user)
+        removee_choices.delete()
 
     def is_friend(self, friend):
         """ Check if friend (user) is in the friends list """
