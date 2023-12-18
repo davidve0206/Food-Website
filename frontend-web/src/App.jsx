@@ -14,8 +14,10 @@ import * as AuthReducer from "./context/reducers/AuthReducer"
 /* Imports for the pages */
 import Home from "./pages/Home"
 import Auth from "./pages/Auth"
-import LoggedInView from "./pages/LoggedInView"
 import ErrorPage from "./pages/ErrorPage"
+import LoggedInView from "./pages/LoggedInView"
+import FoodOptions from './pages/FoodOptions';
+import NoSelectedFriend from './components/NoSelectedFriend';
 
 /* Set routes within the app */
 const router = createBrowserRouter([
@@ -32,7 +34,14 @@ const router = createBrowserRouter([
   {
     path: "/loggedin",
     element: <LoggedInView />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
+    children: [
+      {index: true, element: <NoSelectedFriend />},
+      {
+        path: "/loggedin/friends/:username",
+        element: <FoodOptions />
+      },
+    ]
   },
 ]);
 

@@ -1,28 +1,61 @@
 /* Import for Navigation */
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom"
-/* Imports for the auth context */
-import { useContext, useEffect, useState } from "react"
+import { useParams, useOutletContext } from "react-router-dom";
+/* React Imports */
+import { useState, useEffect, useContext } from "react"
+/* Context imports */
 import { AuthContext } from "../../context/hooks/AuthContext"
 /* Component imports */
-
+import Header from "./Header";
+import Options from "./Options";
+import Matches from "./Matches";
 /* Imports of utility functions and css */
-import PropTypes from 'prop-types';
+import * as ACTION_TYPES from "../../utils/action_types"
+import API from "../../utils/api-service"
+import { get_usernames } from "../../utils/functions"
+import "../../assets/css/FoodOptions.css"
 
-
-export default function FoodOptions({ selectedFriend = null }) {
+export default function FoodOptions() {
   
-  FoodOptions.propTypes = {
-    selectedFriend: PropTypes.string,
+  const { username: friendUsername } = useParams()
+  const context = useContext(AuthContext)
+  const [friendList] = useOutletContext()
+  const [selectedView, setSelectedView] = useState(ACTION_TYPES.CHOOSE)
+  const [optionsArray, setOptionsArray] = useState()
+
+  useEffect(() => {
+    getOptions()
+  }, [])
+
+  function getOptions() {
+    API.getOptions(context.tokenState, friendUsername)
+    .then( resp => setOptionsArray(resp) )
   }
 
   /* Return the view */
-  return (
-    <>
-      <div className='CoreContainer'>
-        <p>Content will go here</p>
-        <p>You have selected {selectedFriend}</p>
+  if (get_usernames(friendList, "username").includes(friendUsername)) {
+    return (
+      <>
+        <div>
+          <Header
+            friendUsername={friendUsername}
+            selectedView={selectedView}
+            setSelectedView={setSelectedView}
+            getOptions={getOptions}
+          />
+          { selectedView === ACTION_TYPES.CHOOSE && <Options
+                                                      friendUsername={friendUsername}
+                                                      optionsArray={optionsArray}
+                                                    />}
+          { selectedView === ACTION_TYPES.MATCHES && <Matches friendUsername={friendUsername}/>}
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <div className="foodHeader">
+        <p><span>{friendUsername}</span> is not in your Friends list</p>
       </div>
-    </>
-  );
+    )
+  }
+  
 }

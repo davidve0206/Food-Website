@@ -1,5 +1,7 @@
 /* React imports */
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
+/* Import for Navigation */
+import { useNavigate } from "react-router-dom"
 /* Context imports */
 import { AuthContext } from "../../context/hooks/AuthContext"
 /* Component imports */
@@ -10,21 +12,27 @@ import API from "../../utils/api-service"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 
-export default function FriendList({friendList=[], setSelectedFriend, getFriends}) {
+export default function FriendList({
+  friendList=[],
+  selectedItem,
+  setSelectedItem,
+  getFriends
+}) {
   
   FriendList.propTypes = {
     friendList: PropTypes.array,
-    setSelectedFriend: PropTypes.func,
+    selectedItem: PropTypes.number,
+    setSelectedItem: PropTypes.func,
     getFriends: PropTypes.func,
   }
 
   const context = useContext(AuthContext)
-  const [selectedItem, setSelectedItem] = useState(null)
+  const navigate = useNavigate()
   
   /* If a friend is clicked, make its index the selectedItem and its username the SelectedFriend */
   function handleFriendClick(friend, id) {
-    setSelectedFriend(friend)
     setSelectedItem(id)
+    navigate(`friends/${friend}`)
   }
 
   /* When a user clicks remove, the site sends the information to the API and
@@ -33,6 +41,7 @@ export default function FriendList({friendList=[], setSelectedFriend, getFriends
     API.removeFriend(context.tokenState, friendUsername)
     .then((resp) => alert(resp.message))
     .then(() => getFriends())
+    .then(() => navigate("/loggedin"))
   }
 
   /* Function that creates a list item for every username in the friendList; with the selectedItem highlighted */
@@ -42,7 +51,7 @@ export default function FriendList({friendList=[], setSelectedFriend, getFriends
       for (const friend of friendList) {
         listItems.push(
           <li key={`Friend ${friend.id}`}
-          className={`ClickableListItem ${friend.id === selectedItem && "Selected"}`}
+          className={`ClickableListItem ${friend.id === selectedItem ? "Selected" : ""}`}
           onClick={() => handleFriendClick(friend.username, friend.id)}
           >
             {friend.username}

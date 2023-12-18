@@ -149,4 +149,69 @@ export default class API {
       )
     }
 
+  /* API call to get food options */
+  static getOptions(token, friendUsername) {
+    return(
+      fetch( `${this.url}/food/${friendUsername}/options/`, {
+        method: "GET",
+        headers:{
+          "Content-Type": "application/json",
+          "Authorization": `Token ${token}`
+        }
+      } )
+      .then( resp => resp.json() )
+      .catch( error => console.log(error) )
+    )
+  }
+
+  /* API call to send a choice on a food option */
+  static makeFoodChoice(token, friendUsername, dish, action) {
+    return(
+      fetch( `${this.url}/food/${friendUsername}/make_choice/`, {
+        method: "POST",
+        headers:{
+          "Content-Type": "application/json",
+          "Authorization": `Token ${token}`
+        },
+        body: JSON.stringify({
+          "dish": dish,
+          "action": action
+        })
+      } )
+      .then( resp => resp.json() )
+      .catch( error => console.log(error) )
+    )
+  }
+
+  /* API call to reset the user's food choices */
+  static resetChoices(token, friendUsername) {
+    return(
+      fetch( `${this.url}/food/${friendUsername}/reset_choices/`, {
+        method: "POST",
+        headers:{
+          "Content-Type": "application/json",
+          "Authorization": `Token ${token}`
+        }
+      } )
+      .then( resp => resp.json() )
+      .catch( error => console.log(error) )
+    )
+  }
+
+  /* API see matches for the friend pairing */
+  static getMatches(token, friendUsername) {
+    return(
+      fetch( `${this.url}/food/${friendUsername}/matches/`, {
+        method: "GET",
+        headers:{
+          "Content-Type": "application/json",
+          "Authorization": `Token ${token}`
+        }
+      } )
+      .then( resp => resp.json() )
+      .catch( error => console.log(error) )
+    )
+  }
 }
+
+  

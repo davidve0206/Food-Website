@@ -95,10 +95,11 @@ button:hover {
 }
 
 .CollapsibleList > li {
-  margin: 0.35rem 0rem;
+  padding: 0.35rem 0rem;
   list-style: none;
   display: grid;
   grid-template-columns: auto auto auto;
+  background-color: var(--theme-color-light-orange);
 }
 
 .CollapsibleList > .ClickableListItem {

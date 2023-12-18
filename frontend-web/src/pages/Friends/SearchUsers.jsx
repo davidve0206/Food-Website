@@ -76,6 +76,7 @@ export default function SearchUsers({friendList}) {
     <>
       <input
         className="UserSearchBar"
+        name="UserSearchBar"
         placeholder="Add new friends"
         value={input}
         onChange={(event) => handleChange(event.target.value)}

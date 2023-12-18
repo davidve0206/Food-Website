@@ -14,3 +14,23 @@ svg {
 li > .fa-rectangle-xmark {
   margin-left: auto;
 }
+
+.fa-circle-xmark {
+  color: darkred;
+  font-size: 2rem;
+  margin:auto;
+}
+
+.fa-circle-xmark:hover {
+  color: var(--theme-color-dark-red);
+}
+
+.fa-circle-check {
+  color: darkgreen;
+  font-size: 2rem;
+  margin:auto;
+}
+
+.fa-circle-check:hover {
+  color: green;
+}

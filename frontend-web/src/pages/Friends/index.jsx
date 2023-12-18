@@ -11,14 +11,21 @@ import PropTypes from 'prop-types';
 import API from "../../utils/api-service"
 import { get_ids_and_usernames } from "../../utils/functions"
 
-export default function LoggedInView({setSelectedFriend}) {
+export default function LoggedInView({
+  friendList,
+  setFriendList,
+  selectedItem,
+  setSelectedItem
+}) {
   
   LoggedInView.propTypes = {
-    setSelectedFriend: PropTypes.func.isRequired,
+    friendList: PropTypes.array,
+    setFriendList: PropTypes.func.isRequired,
+    selectedItem: PropTypes.number,
+    setSelectedItem: PropTypes.func.isRequired,
   }
 
   const context = useContext(AuthContext)
-  const [friendList, setFriendList] = useState([])
   const [friendRequests, setFriendRequests] = useState([])
 
   /* when the component is rendered, get user's lists of friends and requests */
@@ -29,7 +36,7 @@ export default function LoggedInView({setSelectedFriend}) {
   function getFriends() {
     API.fetchFriendList(context.tokenState)
     .then( resp => setFriendList(get_ids_and_usernames(resp, "username")) )
-    .then(setSelectedFriend(null))
+    .then(setSelectedItem(null))
     API.fetchFriendRequests(context.tokenState)
     .then( resp => setFriendRequests(get_ids_and_usernames(resp, "sender")) )
   }
@@ -42,7 +49,8 @@ export default function LoggedInView({setSelectedFriend}) {
         />
         <FriendList
           friendList={friendList}
-          setSelectedFriend={setSelectedFriend}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
           getFriends={getFriends}
         />
         <FriendRequestList
