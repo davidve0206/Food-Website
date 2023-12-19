@@ -10,8 +10,8 @@ const reviews_dummy = [
     review: "The long hours of deciding what to eat every day are gone. Now my partner and I always have a few options on store."
   },
   {
-    user: "Miley Cirus",
-    review: "Girl's night has become so much easier! We can quickly decide on that to eat before we even meet."
+    user: "Miley Cyrus",
+    review: "Girl's night has become so much easier! We can quickly decide on what to eat before we even meet."
   },
 ];
 
