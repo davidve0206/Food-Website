@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import API from "../../utils/api-service"
 import "../../assets/css/Forms.css"
 
@@ -53,7 +53,8 @@ export default function CreateUserForm() {
         <input {...register("last_name", { required: "Last name is required" })} />
         {errors.last_name && <span className="FormAlert" role="alert">{errors.last_name.message}</span>}
 
-        <button>Sign In</button>
+        <button>Sign Up</button>
+        <Link to={`/auth`} className="FormAlert">Already have an account? Log-in here!</Link>
       </form>
     </div>
     

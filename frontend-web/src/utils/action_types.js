@@ -1,7 +1,7 @@
 /* Auth actions */
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
-export const SINGIN = "SIGNIN";
+export const SINGUP = "SIGNUP";
 
 /* Friend food actions */
 export const CHOOSE = "CHOOSE";

@@ -46,7 +46,7 @@ export default function CreateUserForm() {
         {errors?.password?.type === "required" && <span className="FormAlert" role="alert">{errors.password.message}</span>}
 
         <button>Log In</button>
-        <Link to={`/auth/${ACTION_TYPES.SINGIN}`} className="FormAlert">Don't have an account? Sing-in here!</Link>
+        <Link to={`/auth/${ACTION_TYPES.SINGUP}`} className="FormAlert">Don't have an account? Sing-up here!</Link>
       </form>
     </div>
     

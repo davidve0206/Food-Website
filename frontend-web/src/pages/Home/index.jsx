@@ -11,8 +11,8 @@ export default function Home() {
       <div className='CoreContainer'>
         <div className='Welcome'>
           <h1>Can't agree on what to eat tonight?</h1>
-          <Link to={`/auth/${ACTION_TYPES.SINGIN}`}>
-            <button>Sign In</button>
+          <Link to={`/auth/${ACTION_TYPES.SINGUP}`}>
+            <button>Sign Up</button>
           </Link>
         </div>
         <Reviews />
