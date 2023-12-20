@@ -1,6 +1,6 @@
 export default class API {
   
-  static url = "http://54.85.150.87"
+  static url = "https://q9gps0ylyk.execute-api.us-east-1.amazonaws.com"
 
   /* API calls to create and log users in */
 
