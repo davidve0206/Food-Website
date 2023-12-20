@@ -34,7 +34,7 @@ export default function SearchUsers({friendList}) {
   emptying the results if he deletes his query */
   function handleChange(value) {
     setInput(value)
-    let searchResult = userList.filter((username) => username.toLowerCase().includes(value))
+    let searchResult = userList.filter((username) => username.toLowerCase().includes(value.toLowerCase()))
     setResults(value === "" ? [] : searchResult)
   }
 
