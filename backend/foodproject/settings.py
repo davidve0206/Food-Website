@@ -172,5 +172,5 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://food-project-frontend-host.s3-website-us-east-1.amazonaws.com",
+    "https://d2frquv685fztr.cloudfront.net/",
 ]
