@@ -148,10 +148,9 @@ if os.getenv('USE_S3') == 'TRUE':
 else:
     STATIC_URL = '/staticfiles/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
     MEDIA_URL = '/mediafiles/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
-
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
