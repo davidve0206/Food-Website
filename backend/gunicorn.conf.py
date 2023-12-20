@@ -7,7 +7,8 @@ wsgi_app = "foodproject.wsgi:application"
 # The number of worker processes for handling requests
 workers = multiprocessing.cpu_count() * 2 + 1
 # The socket to bind
-bind = "0.0.0.0:80"
+bind = "0.0.0.0:5000"
+# Following code is commented out as I do not plan to keep logs for errors
 """ # Restart workers when code changes (development only!)
 reload = True
 # The granularity of Error log outputs
