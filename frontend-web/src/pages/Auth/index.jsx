@@ -27,7 +27,7 @@ export default function Auth() {
   return (
     <>
       <SiteHeader inclLogIn={false} />
-      {type == ACTION_TYPES.SINGIN ? <CreateUserForm /> : <LogInForm />}
+      {type == ACTION_TYPES.SINGUP ? <CreateUserForm /> : <LogInForm />}
     </>
   )
 
