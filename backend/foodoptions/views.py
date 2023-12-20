@@ -72,7 +72,7 @@ class ResetChoicesView(views.APIView):
         queryset.delete()
 
         response = {"message":
-                    f"Previous choices for friend {self.kwargs["friend"]} have been reset"}
+                    f"Previous choices for friend {self.kwargs['friend']} have been reset"}
 
         return Response(response, status=status.HTTP_200_OK)
 
